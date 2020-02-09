@@ -18,7 +18,7 @@ class Task{
         $this->was_edited = $obj->was_edited;
     }
 
-    static function getThreeTasks($page) {
+    static function getThreeTasks($page, $sort) {
         require_once(__DIR__ . '/../config.php');
         $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -26,8 +26,23 @@ class Task{
             exit;
         }
 
+        $sql_order = '';
+        if($sort == 'namea'){
+            $sql_order = ' ORDER BY `tasks`.`name` ASC';
+        }elseif($sort == 'named'){
+            $sql_order = ' ORDER BY `tasks`.`name` DESC';
+        }elseif($sort == 'emaila'){
+            $sql_order = ' ORDER BY `tasks`.`email` ASC';
+        }elseif($sort == 'emaild'){
+            $sql_order = ' ORDER BY `tasks`.`email` DESC';
+        }elseif($sort == 'statusa'){
+            $sql_order = ' ORDER BY `tasks`.`is_completed` ASC';
+        }elseif($sort == 'statusd'){
+            $sql_order = ' ORDER BY `tasks`.`is_completed` DESC';
+        }
+
 		$offset = ($page - 1)*3;
-		$result = mysqli_query($link, 'SELECT * FROM `tasks` LIMIT 3 OFFSET ' . (int)$offset, MYSQLI_USE_RESULT);
+		$result = mysqli_query($link, 'SELECT * FROM `tasks` ' . $sql_order . ' LIMIT 3 OFFSET ' . (int)$offset, MYSQLI_USE_RESULT);
 		$tasks = [];
 
 		if ($result) {

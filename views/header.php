@@ -27,6 +27,32 @@
       <li class="nav-item">
         <a class="nav-link" href="/index.php/create">Create new task</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/index.php/list/1/namea">Sort by name ASC</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.php/list/1/named">Sort by name DESC</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/index.php/list/1/emaila">Sort by email ASC</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.php/list/1/emaild">Sort by email DESC</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/index.php/list/1/statusa">Sort by status ASC</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index.php/list/1/statusd">Sort by status DESC</a>
+      </li>
+
+
+
+
+
       <?php
         session_start();
         if(!isset($_SESSION['username'])){ ?>

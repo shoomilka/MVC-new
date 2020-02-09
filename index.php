@@ -8,7 +8,13 @@ require(__DIR__ . '/bootstrap.php');
 if($controller === 'list'){
 	require('controllers/TaskController.php');
 	if(isset(explode('/', $url)[3])){
-		TaskController::getTasks((int)explode('/', $url)[3]);
+		$page = (int)explode('/', $url)[3] ?? '1';
+		if(isset(explode('/', $url)[4])){
+			$sort = explode('/', $url)[4];
+		} else {
+			$sort = 'id';
+		}
+		TaskController::getTasks($page, $sort);
 	} else {
 		TaskController::getTasks();
 	}

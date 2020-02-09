@@ -1,8 +1,8 @@
 <?php
 
 class TaskController {
-	static function getTasks($page = 1){
-		$tasks = Task::getThreeTasks($page);
+	static function getTasks($page = 1, $sort = 'id'){
+		$tasks = Task::getThreeTasks($page, $sort);
 		$count = Task::getCountOfPages();
 		require(__DIR__ . '/../views/list.php');
 		return;
@@ -11,6 +11,7 @@ class TaskController {
 	static function createNewTask(){
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$email = htmlentities($_POST["email"]);
+			$message = '';
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   				$message = "Invalid email format";
 			}
@@ -18,7 +19,8 @@ class TaskController {
 			$text = htmlentities($_POST["text"]);
 			if($name == '' || $text == '' || $email == ''){
 				$message = "Fill all fields!";
-			} else {
+			} 
+			if($message == '') {
 				Task::createNewTask($name, $email, $text);
 				$message = "Task added successfully!";
 			}
@@ -35,6 +37,7 @@ class TaskController {
 	static function editTask($id){
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$email = htmlentities($_POST["email"]);
+			$message = '';
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   				$message = "Invalid email format";
 			}
@@ -42,7 +45,8 @@ class TaskController {
 			$text = htmlentities($_POST["text"]);
 			if($name == '' || $text == '' || $email == ''){
 				$message = "Fill all fields!";
-			} else {
+			}
+			if($message == '')  {
 				Task::editTask($id, $name, $email, $text);
 				$message = "Task edited successfully!";
 			}

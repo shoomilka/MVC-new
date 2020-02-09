@@ -29,7 +29,7 @@ foreach($tasks as $item){
   <ul class="pagination">
   <?php
         for($i=1; $i <= $count; $i++){
-            echo '<li class="page-item"><a class="page-link" href="/index.php/list/'.$i.'">'. $i .'</a></li>';
+            echo '<li class="page-item"><a class="page-link" href="/index.php/list/'.$i.'/' . $sort . '">'. $i .'</a></li>';
         }
   ?>
   </ul>
