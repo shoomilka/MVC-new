@@ -8,14 +8,9 @@ class UserController {
 				$username = $_POST['username'];
 				$password = $_POST['password'];
 				
-				require(__DIR__ . '/../config.php');
-				$result = mysqli_query($link, "SELECT * FROM users WHERE `username` = \"$username\"", MYSQLI_USE_RESULT);
-				$user = $result->fetch_object();
-
-				$result->close();
-				mysqli_close($link);
+				$user = User::loadUserByName($username);
 				
-				if (password_verify($password, $user->password)) {
+				if (password_verify($password, $user->getPassword())) {
 					$_SESSION['valid'] = true;
 					$_SESSION['timeout'] = time();
 					$_SESSION['username'] = $username;
