@@ -1,13 +1,18 @@
 <?php
 require('header.php');
 ?>
-<form action="/index.php/task" method="POST">
-	<label for="basic-url">Title</label>
+<form action="/index.php/create" method="POST">
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon3">Title</span>
+			<span class="input-group-text" id="basic-addon3">Name</span>
 		</div>
-		<input type="text" name="title" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+		<input type="text" name="name" class="form-control">
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon3">Email</span>
+		</div>
+		<input type="text" name="email" class="form-control">
 	</div>
 
 	<div class="input-group">

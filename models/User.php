@@ -22,13 +22,13 @@ class User{
     }
 
     static function loadUserByName($username){
-        require(__DIR__ . '/../config.php');
+        require_once(__DIR__ . '/../config.php');
         $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
         if (!$link) {
             exit;
         }
-        
+
 		$result = mysqli_query($link, "SELECT * FROM users WHERE `username` = \"$username\"", MYSQLI_USE_RESULT);
         $mysql_user = $result->fetch_object();
         

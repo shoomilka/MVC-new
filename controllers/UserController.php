@@ -11,6 +11,8 @@ class UserController {
 				$user = User::loadUserByName($username);
 				
 				if (password_verify($password, $user->getPassword())) {
+					session_start();
+					
 					$_SESSION['valid'] = true;
 					$_SESSION['timeout'] = time();
 					$_SESSION['username'] = $username;

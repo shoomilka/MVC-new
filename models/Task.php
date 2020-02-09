@@ -4,7 +4,6 @@ class Task{
     private $id;
 	private $user_id;
 	private $is_completed;
-    private $title;
     private $text;
     private $name;
     private $email;
@@ -61,12 +60,20 @@ class Task{
         return $this->id;
     }
 
-    public function getTitle(){
-        return $this->title;
+    public function getName(){
+        return $this->name;
     }
 
-    public function setTitle($title){
-        $this->title = $title;
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+
+    public function setEmail($email){
+        $this->email = $email;
     }
 	
 	public function getText(){
@@ -75,5 +82,21 @@ class Task{
 
     public function setText($text){
         $this->text = $text;
+    }
+
+    public function isCompleted(){
+        return $this->is_completed;
+    }
+
+    static function setCompleted($id){
+        require_once(__DIR__ . '/../config.php');
+        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if (!$link) {
+            exit;
+        }
+
+        $result = mysqli_query($link, 'UPDATE `tasks` SET is_completed = 1 WHERE id='.$id);
+        mysqli_close($link);
     }
 }
