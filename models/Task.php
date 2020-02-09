@@ -3,7 +3,8 @@
 class Task{
     private $id;
 	private $user_id;
-	private $is_completed;
+    private $is_completed;
+    private $was_edited;
     private $text;
     private $name;
     private $email;
@@ -14,6 +15,7 @@ class Task{
         $this->name = $obj->name;
         $this->email = $obj->email;
         $this->is_completed = $obj->is_completed;
+        $this->was_edited = $obj->was_edited;
     }
 
     static function getThreeTasks($page) {
@@ -87,6 +89,10 @@ class Task{
         return $this->is_completed;
     }
 
+    public function wasEdited(){
+        return $this->was_edited;
+    }
+
     static function setCompleted($id){
         require_once(__DIR__ . '/../config.php');
         $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -110,5 +116,37 @@ class Task{
         $result = mysqli_query($link, 'INSERT INTO `tasks` (`name`, `email`, `text`)
                             VALUES ("' . $name . '", "' . $email .'", "'. $text .'")');
         mysqli_close($link);
+    }
+
+    static function editTask($id, $name, $email, $text){
+        require_once(__DIR__ . '/../config.php');
+        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if (!$link) {
+            exit;
+        }
+
+        $result = mysqli_query($link, 'UPDATE `tasks` SET `name`="'.$name.'", `email`="'.$email
+                                    .'", `text`="'.$text.'", `was_edited`=1 WHERE `id`='.$id);
+
+        mysqli_close($link);
+    }
+
+    static function getById($id){
+        require_once(__DIR__ . '/../config.php');
+        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if (!$link) {
+            exit;
+        }
+
+        $result = mysqli_query($link, 'SELECT * FROM `tasks` WHERE id='.$id);
+        if ($result) {
+            $obj = $result->fetch_object();	
+			$task = new Task($obj);
+        }
+        $result->close();
+        mysqli_close($link);
+        return $task;
     }
 }

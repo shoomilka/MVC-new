@@ -27,6 +27,13 @@
       <li class="nav-item">
         <a class="nav-link" href="/index.php/create">Create new task</a>
       </li>
+      <?php
+        session_start();
+        if(!isset($_SESSION['username'])){ ?>
+          <li class="nav-item">
+            <a class="nav-link" href="/index.php/login">Login</a>
+          </li>
+        <?php } ?>
     </ul>
   </div>
 </nav>

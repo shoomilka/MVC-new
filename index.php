@@ -25,7 +25,15 @@ if($controller === 'list'){
 	}
 }elseif($controller === 'create'){
 	require('controllers/TaskController.php');
-	TaskController::createNewTask(); // doesn't work
+	TaskController::createNewTask();
+}elseif($controller === 'edit'){
+	require('controllers/TaskController.php');
+	if(isset(explode('/', $url)[3])){
+		TaskController::editTask((int)explode('/', $url)[3]);
+	}else{
+		require('controllers/ErrorController.php');
+		ErrorController::error();
+	}
 }else{
 	require('controllers/ErrorController.php');
 	ErrorController::error();
