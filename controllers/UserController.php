@@ -2,6 +2,7 @@
 
 class UserController {
 	static function login(){
+		$msg = "";
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			
 			if (!empty($_POST['username']) && !empty($_POST['password'])) {
@@ -21,7 +22,9 @@ class UserController {
 				}else {
 					$msg = 'Wrong username or password';
                }
-            }
+            } else {
+				$msg = "Fill the inputs!";
+			}
 		}
 		require(__DIR__ . '/../views/login.php');
 		return;

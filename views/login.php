@@ -1,5 +1,8 @@
 <?php
 require('header.php');
+if($msg != ''){
+	echo '<div class="alert alert-warning" role="alert">'.$msg.'</div>';
+}
 ?>
 
 <form action="/index.php/login" method="POST">

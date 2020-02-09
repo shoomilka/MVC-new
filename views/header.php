@@ -59,6 +59,10 @@
           <li class="nav-item">
             <a class="nav-link" href="/index.php/login">Login</a>
           </li>
+        <?php }else{ ?>
+          <li class="nav-item">
+            <a class="nav-link" href="/index.php/logout">Logout</a>
+          </li>
         <?php } ?>
     </ul>
   </div>

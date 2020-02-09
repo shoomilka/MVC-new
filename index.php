@@ -21,6 +21,10 @@ if($controller === 'list'){
 }elseif($controller === 'login'){
 	require('controllers/UserController.php');
 	UserController::login();
+}elseif($controller === 'logout'){
+	session_start();
+	session_destroy();
+	header('Location: /index.php');
 }elseif($controller === 'completed'){
 	if(isset(explode('/', $url)[3])){
 		require('controllers/TaskController.php');
