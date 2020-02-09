@@ -10,7 +10,6 @@ class Task{
 
     function __construct($obj){
         $this->id = $obj->id;
-        $this->title = $obj->title;
         $this->text = $obj->text;
         $this->name = $obj->name;
         $this->email = $obj->email;
@@ -97,6 +96,19 @@ class Task{
         }
 
         $result = mysqli_query($link, 'UPDATE `tasks` SET is_completed = 1 WHERE id='.$id);
+        mysqli_close($link);
+    }
+
+    static function createNewTask($name, $email, $text){
+        require_once(__DIR__ . '/../config.php');
+        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if (!$link) {
+            exit;
+        }
+
+        $result = mysqli_query($link, 'INSERT INTO `tasks` (`name`, `email`, `text`)
+                            VALUES ("' . $name . '", "' . $email .'", "'. $text .'")');
         mysqli_close($link);
     }
 }

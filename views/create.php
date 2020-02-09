@@ -1,5 +1,9 @@
 <?php
 require('header.php');
+
+if(isset($message)){
+	echo '<div class="alert alert-warning" role="alert">'.$message.'</div>';
+}
 ?>
 <form action="/index.php/create" method="POST">
 	<div class="input-group mb-3">
