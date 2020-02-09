@@ -19,9 +19,15 @@ class Task{
     }
 
     static function getThreeTasks($page) {
-        require(__DIR__ . '/../config.php');
-		
-		$result = mysqli_query($link, 'SELECT * FROM `tasks`', MYSQLI_USE_RESULT);
+        require_once(__DIR__ . '/../config.php');
+        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if (!$link) {
+            exit;
+        }
+
+		$offset = ($page - 1)*3;
+		$result = mysqli_query($link, 'SELECT * FROM `tasks` LIMIT 3 OFFSET ' . (int)$offset, MYSQLI_USE_RESULT);
 		$tasks = [];
 
 		if ($result) {
@@ -29,10 +35,26 @@ class Task{
 				$tasks[] = new Task($obj);
 			}
 		}
-		
-		$result->close();
+        $result->close();
         mysqli_close($link);
         return $tasks;
+    }
+
+    static function getCountOfPages(){
+        require_once(__DIR__ . '/../config.php');
+        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if (!$link) {
+            exit;
+        }
+
+        $result = mysqli_query($link, 'SELECT * FROM `tasks`');
+        if ($result) {
+            $count = ceil(mysqli_num_rows($result)/3);
+        }
+        $result->close();
+        mysqli_close($link);
+        return $count;
     }
 
     public function getId(){

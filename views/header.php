@@ -11,5 +11,4 @@
     <title>MVC site for BeeJee</title>
   </head>
   <body style="background: aliceblue;">
-	<div class="container">
-		<div class="row" style="padding-top: 50px;">
+	<div class="container" style="padding-top: 50px;">
