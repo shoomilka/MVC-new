@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2020 at 05:46 PM
+-- Generation Time: Feb 09, 2020 at 07:20 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.0.27
 
@@ -56,7 +56,12 @@ INSERT INTO `tasks` (`id`, `name`, `email`, `is_completed`, `was_edited`, `text`
 (12, 'Uliana Shumilina', 'shoomilka@i.ua', 1, 0, '&lt;script&gt;alert(&lsquo;test&rsquo;);&lt;/script&gt;'),
 (14, 'Uliana Shumilina', 'shoomilka@i.ua', 0, 0, 'hsrhehh'),
 (15, 'Uliana Shumilina', 'shoomilka@i.ua', 0, 0, 'derer'),
-(16, 'Uliana Shumilina', 'shoomilka@i.ua', 0, 0, 'new task');
+(16, 'Uliana Shumilina', 'shoomilka@i.ua', 0, 0, 'new task'),
+(17, 'Uliana Shumilina', 'test@test.com', 0, 1, 'test'),
+(18, 'Uliana Shumilina', 'shoomilka@i.ua', 0, 0, 'cdsvssv'),
+(19, 'Uliana Shumilina', 'shoomilka@i.ua', 0, 0, 'cdsvssv'),
+(20, 'Uliana Shumilina', 'shoomilka@i.ua', 0, 0, 'cdsvssv cds'),
+(21, 'ALF', 'alf@i.ua', 0, 0, 'dsfergergg');
 
 -- --------------------------------------------------------
 
@@ -101,7 +106,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
