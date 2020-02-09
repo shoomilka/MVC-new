@@ -1,7 +1,7 @@
 <?php
 
 $url = $_SERVER['REQUEST_URI'];
-$controller = explode('/', $url)[2] ?? 'list';
+$controller = (string)explode('/', $url)[2] ?? 'list';
 
 require(__DIR__ . '/bootstrap.php');
 
