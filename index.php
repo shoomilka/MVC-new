@@ -7,7 +7,11 @@ require(__DIR__ . '/bootstrap.php');
 
 if($controller == 'list'){
 	require('controllers/TaskController.php');
-	TaskController::getTasks();
+	if(isset(explode('/', $url)[3])){
+		TaskController::getTasks((int)explode('/', $url)[3]);
+	} else {
+		TaskController::getTasks();
+	}
 }elseif($controller == 'login'){
 	require('controllers/UserController.php');
 	UserController::login();
