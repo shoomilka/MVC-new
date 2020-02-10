@@ -28,11 +28,14 @@ class User{
         if (!$link) {
             exit;
         }
-
-		$result = mysqli_query($link, "SELECT * FROM users WHERE `username` = \"$username\"", MYSQLI_USE_RESULT);
-        $mysql_user = $result->fetch_object();
-        
-        $user = new User($mysql_user);
+        $result = mysqli_query($link, "SELECT * FROM users WHERE `username` = \"$username\"");
+        if(mysqli_num_rows($result) == 1){
+            $result = mysqli_query($link, "SELECT * FROM users WHERE `username` = \"$username\"", MYSQLI_USE_RESULT);
+            $mysql_user = $result->fetch_object();
+            $user = new User($mysql_user);
+        }else{
+            return false;
+        }
 
 		$result->close();
         mysqli_close($link);
