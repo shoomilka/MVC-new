@@ -2,7 +2,6 @@
 
 class Task{
     private $id;
-	private $user_id;
     private $is_completed;
     private $was_edited;
     private $text;
